@@ -6,6 +6,7 @@ const NFTTraitUpload: React.FC = () => {
   const [traitName, setTraitName] = useState('');
   const [traitType, setTraitType] = useState('');
   const [fileName, setFileName] = useState('');
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   
   const traitTypes = [
     "Background",
@@ -22,6 +23,13 @@ const NFTTraitUpload: React.FC = () => {
     const file = e.target.files?.[0];
     if (file) {
       setFileName(file.name);
+      
+      // Create image preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -54,7 +62,17 @@ const NFTTraitUpload: React.FC = () => {
                 accept="image/*"
                 onChange={handleFileChange}
               />
-              <ImagePlus className="w-16 h-16 text-futuristic-silver/40 mb-4" />
+              {imagePreview ? (
+                <div className="mb-4">
+                  <img 
+                    src={imagePreview} 
+                    alt="Preview" 
+                    className="max-h-48 rounded-md object-contain"
+                  />
+                </div>
+              ) : (
+                <ImagePlus className="w-16 h-16 text-futuristic-silver/40 mb-4" />
+              )}
               <p className="text-futuristic-silver text-center mb-2">
                 {fileName ? fileName : "Drag and drop or click to upload"}
               </p>

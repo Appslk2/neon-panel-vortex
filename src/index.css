@@ -44,6 +44,36 @@
     --sidebar-border: 0 0% 20%;
     --sidebar-ring: 142 70% 50%;
   }
+
+  .light-theme {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 142 70% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 142 70% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 80%;
+    --input: 0 0% 90%;
+    --ring: 142 70% 40%;
+  }
 }
 
 @layer base {
@@ -71,6 +101,10 @@
 
   body::-webkit-scrollbar-thumb:hover {
     background: theme('colors.futuristic.green');
+  }
+
+  .light-theme body {
+    @apply bg-white text-gray-800;
   }
 }
 
@@ -118,5 +152,47 @@
 
   .futuristic-glow {
     @apply animate-pulse-glow;
+  }
+
+  /* Light theme overrides */
+  .light-theme .sidebar-button {
+    @apply bg-gray-200 text-gray-700;
+  }
+
+  .light-theme .sidebar-button:hover {
+    @apply text-futuristic-green;
+  }
+
+  .light-theme .card {
+    @apply border-gray-300 bg-white shadow-md;
+  }
+
+  .light-theme .card::before {
+    @apply border-futuristic-green/20;
+  }
+
+  .light-theme .text-futuristic-silver {
+    @apply text-gray-800;
+  }
+
+  .light-theme .text-futuristic-silver\/60,
+  .light-theme .text-futuristic-silver\/80 {
+    @apply text-gray-600;
+  }
+
+  .light-theme .bg-futuristic-black {
+    @apply bg-gray-50;
+  }
+
+  .light-theme .bg-futuristic-darkGray {
+    @apply bg-gray-200;
+  }
+
+  .light-theme .bg-futuristic-darkGray\/40 {
+    @apply bg-gray-100;
+  }
+
+  .light-theme .border-futuristic-darkGray {
+    @apply border-gray-300;
   }
 }
