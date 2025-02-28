@@ -11,6 +11,13 @@ const Airdrop: React.FC = () => {
     e.preventDefault();
     console.log({ walletAddress, nftId, amount });
     // Handle airdrop logic here
+    alert(`Airdrop of ${amount} NFT(s) with ID ${nftId} sent to ${walletAddress}`);
+  };
+  
+  const handleCancel = () => {
+    setWalletAddress('');
+    setNftId('');
+    setAmount('1');
   };
 
   return (
@@ -28,8 +35,9 @@ const Airdrop: React.FC = () => {
         <form onSubmit={handleSubmit}>
           {/* Wallet Address */}
           <div className="mb-6">
-            <label className="block text-futuristic-silver mb-2">Wallet Address</label>
+            <label htmlFor="walletAddress" className="block text-futuristic-silver mb-2">Wallet Address</label>
             <input 
+              id="walletAddress"
               type="text" 
               className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
               placeholder="Enter recipient wallet address (0x...)"
@@ -40,8 +48,9 @@ const Airdrop: React.FC = () => {
 
           {/* NFT ID */}
           <div className="mb-6">
-            <label className="block text-futuristic-silver mb-2">NFT ID</label>
+            <label htmlFor="nftId" className="block text-futuristic-silver mb-2">NFT ID</label>
             <input 
+              id="nftId"
               type="text" 
               className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
               placeholder="Enter NFT ID"
@@ -52,8 +61,9 @@ const Airdrop: React.FC = () => {
 
           {/* Amount */}
           <div className="mb-8">
-            <label className="block text-futuristic-silver mb-2">Amount</label>
+            <label htmlFor="amount" className="block text-futuristic-silver mb-2">Amount</label>
             <input 
+              id="amount"
               type="number" 
               min="1"
               className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
@@ -74,7 +84,8 @@ const Airdrop: React.FC = () => {
 
           <div className="mt-8 flex justify-end">
             <button 
-              type="button" 
+              type="button"
+              onClick={handleCancel}
               className="px-6 py-3 bg-futuristic-darkGray text-futuristic-silver rounded-md hover:bg-futuristic-darkGray/80 transition-colors mr-4"
             >
               Cancel

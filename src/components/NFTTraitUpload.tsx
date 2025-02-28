@@ -37,6 +37,14 @@ const NFTTraitUpload: React.FC = () => {
     e.preventDefault();
     console.log({ traitName, traitType, fileName });
     // Handle upload logic here
+    alert(`Trait "${traitName}" of type "${traitType}" submitted successfully!`);
+  };
+  
+  const handleCancel = () => {
+    setTraitName('');
+    setTraitType('');
+    setFileName('');
+    setImagePreview(null);
   };
 
   return (
@@ -84,8 +92,9 @@ const NFTTraitUpload: React.FC = () => {
 
           {/* Trait Name */}
           <div className="mb-6">
-            <label className="block text-futuristic-silver mb-2">Trait Name</label>
+            <label htmlFor="traitName" className="block text-futuristic-silver mb-2">Trait Name</label>
             <input 
+              id="traitName"
               type="text" 
               className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
               placeholder="Enter trait name"
@@ -96,9 +105,10 @@ const NFTTraitUpload: React.FC = () => {
 
           {/* Trait Type Dropdown */}
           <div className="mb-8">
-            <label className="block text-futuristic-silver mb-2">Trait Type</label>
+            <label htmlFor="traitType" className="block text-futuristic-silver mb-2">Trait Type</label>
             <div className="relative">
               <select
+                id="traitType"
                 className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors appearance-none"
                 value={traitType}
                 onChange={(e) => setTraitType(e.target.value)}
@@ -119,6 +129,7 @@ const NFTTraitUpload: React.FC = () => {
           <div className="mt-8 flex justify-end">
             <button 
               type="button" 
+              onClick={handleCancel}
               className="px-6 py-3 bg-futuristic-darkGray text-futuristic-silver rounded-md hover:bg-futuristic-darkGray/80 transition-colors mr-4"
             >
               Cancel

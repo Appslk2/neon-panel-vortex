@@ -34,10 +34,23 @@ const TraitUpgrade: React.FC = () => {
     }
   };
 
+  const handleMethodSelection = (method: string) => {
+    setUpgradeMethod(method);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ traitType, upgradeMethod, nftIds, fileName });
     // Handle upgrade logic here
+    alert(`Upgrade initiated for ${traitType} trait with method: ${upgradeMethod}`);
+  };
+  
+  const handleCancel = () => {
+    setTraitType('');
+    setUpgradeMethod('withoutNftIds');
+    setNftIds('');
+    setFileName('');
+    setImagePreview(null);
   };
 
   return (
@@ -85,9 +98,10 @@ const TraitUpgrade: React.FC = () => {
 
           {/* Trait Type Dropdown */}
           <div className="mb-8">
-            <label className="block text-futuristic-silver mb-2">Trait Upgrade Type</label>
+            <label htmlFor="upgradeTraitType" className="block text-futuristic-silver mb-2">Trait Upgrade Type</label>
             <div className="relative">
               <select
+                id="upgradeTraitType"
                 className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors appearance-none"
                 value={traitType}
                 onChange={(e) => setTraitType(e.target.value)}
@@ -109,14 +123,21 @@ const TraitUpgrade: React.FC = () => {
           <div className="mb-6">
             <label className="block text-futuristic-silver mb-3">Upgrade Initiation Method</label>
             <div className="flex space-x-4">
-              <div 
+              <label
                 className={`flex-1 p-4 rounded-lg border cursor-pointer transition-all ${
                   upgradeMethod === 'withoutNftIds' 
                     ? 'border-futuristic-green bg-futuristic-green/10' 
                     : 'border-futuristic-darkGray bg-futuristic-black'
                 }`}
-                onClick={() => setUpgradeMethod('withoutNftIds')}
               >
+                <input
+                  type="radio"
+                  name="upgradeMethod"
+                  value="withoutNftIds"
+                  checked={upgradeMethod === 'withoutNftIds'}
+                  onChange={() => handleMethodSelection('withoutNftIds')}
+                  className="hidden"
+                />
                 <div className="flex items-center mb-2">
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-2 ${
                     upgradeMethod === 'withoutNftIds' 
@@ -132,16 +153,23 @@ const TraitUpgrade: React.FC = () => {
                 <p className="text-sm text-futuristic-silver/60 pl-7">
                   Apply upgrade to all qualifying NFTs
                 </p>
-              </div>
+              </label>
               
-              <div 
+              <label 
                 className={`flex-1 p-4 rounded-lg border cursor-pointer transition-all ${
                   upgradeMethod === 'withNftIds' 
                     ? 'border-futuristic-green bg-futuristic-green/10' 
                     : 'border-futuristic-darkGray bg-futuristic-black'
                 }`}
-                onClick={() => setUpgradeMethod('withNftIds')}
               >
+                <input
+                  type="radio"
+                  name="upgradeMethod"
+                  value="withNftIds"
+                  checked={upgradeMethod === 'withNftIds'}
+                  onChange={() => handleMethodSelection('withNftIds')}
+                  className="hidden"
+                />
                 <div className="flex items-center mb-2">
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-2 ${
                     upgradeMethod === 'withNftIds' 
@@ -157,15 +185,16 @@ const TraitUpgrade: React.FC = () => {
                 <p className="text-sm text-futuristic-silver/60 pl-7">
                   Apply upgrade to specific NFT IDs only
                 </p>
-              </div>
+              </label>
             </div>
           </div>
 
           {/* NFT IDs Input (conditional) */}
           {upgradeMethod === 'withNftIds' && (
             <div className="mb-8 animate-fade-in">
-              <label className="block text-futuristic-silver mb-2">NFT IDs</label>
+              <label htmlFor="nftIds" className="block text-futuristic-silver mb-2">NFT IDs</label>
               <textarea
+                id="nftIds"
                 className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
                 placeholder="Enter NFT IDs separated by commas (e.g. 1234, 5678, 9012)"
                 rows={3}
@@ -203,6 +232,7 @@ const TraitUpgrade: React.FC = () => {
           <div className="mt-8 flex justify-end">
             <button 
               type="button" 
+              onClick={handleCancel}
               className="px-6 py-3 bg-futuristic-darkGray text-futuristic-silver rounded-md hover:bg-futuristic-darkGray/80 transition-colors mr-4"
             >
               Cancel
