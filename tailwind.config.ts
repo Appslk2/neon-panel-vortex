@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+                // Futuristic UI theme colors
+                futuristic: {
+                    black: "#121212",
+                    darkGray: "#1e1e1e",
+                    silver: "#c8c8c9",
+                    lightSilver: "#e0e0e0",
+                    green: "#4ade80",
+                    darkGreen: "#22c55e",
+                    highlight: "#9bf0e1"
+                }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +95,49 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+                'pulse-glow': {
+                    '0%, 100%': { 
+                        boxShadow: '0 0 5px rgba(74, 222, 128, 0.5), 0 0 10px rgba(74, 222, 128, 0.2)' 
+                    },
+                    '50%': { 
+                        boxShadow: '0 0 15px rgba(74, 222, 128, 0.8), 0 0 20px rgba(74, 222, 128, 0.4)' 
+                    }
+                },
+                'fade-in': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateY(10px)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateY(0)'
+                    }
+                },
+                'slide-in': {
+                    '0%': {
+                        transform: 'translateX(-100%)'
+                    },
+                    '100%': {
+                        transform: 'translateX(0)'
+                    }
+                },
+                'hover-glow': {
+                    '0%': {
+                        boxShadow: '0 0 5px rgba(74, 222, 128, 0.3)'
+                    },
+                    '100%': {
+                        boxShadow: '0 0 15px rgba(74, 222, 128, 0.6)'
+                    }
+                }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+                'pulse-glow': 'pulse-glow 2s infinite ease-in-out',
+                'fade-in': 'fade-in 0.5s ease-out',
+                'slide-in': 'slide-in 0.5s ease-out',
+                'hover-glow': 'hover-glow 0.3s forwards'
 			}
 		}
 	},
