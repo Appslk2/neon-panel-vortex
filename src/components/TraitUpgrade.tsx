@@ -1,9 +1,12 @@
 
 import React, { useState } from 'react';
-import { Zap } from 'lucide-react';
+import { Zap, ImagePlus } from 'lucide-react';
 
 const TraitUpgrade: React.FC = () => {
   const [traitType, setTraitType] = useState('');
+  const [upgradeMethod, setUpgradeMethod] = useState('withoutNftIds');
+  const [nftIds, setNftIds] = useState('');
+  const [fileName, setFileName] = useState('');
   
   const traitTypes = [
     "Background",
@@ -16,9 +19,16 @@ const TraitUpgrade: React.FC = () => {
     "Mouth"
   ];
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ traitType });
+    console.log({ traitType, upgradeMethod, nftIds, fileName });
     // Handle upgrade logic here
   };
 
@@ -35,6 +45,26 @@ const TraitUpgrade: React.FC = () => {
       
       <div className="card p-6 mt-8 max-w-3xl mx-auto">
         <form onSubmit={handleSubmit}>
+          {/* Image Upload */}
+          <div className="mb-8">
+            <label className="block text-futuristic-silver mb-2">NFT Trait Image</label>
+            <div className="relative border-2 border-dashed border-futuristic-darkGray rounded-lg p-8 flex flex-col items-center justify-center">
+              <input 
+                type="file" 
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+              <ImagePlus className="w-16 h-16 text-futuristic-silver/40 mb-4" />
+              <p className="text-futuristic-silver text-center mb-2">
+                {fileName ? fileName : "Drag and drop or click to upload"}
+              </p>
+              <p className="text-futuristic-silver/60 text-sm text-center">
+                Supports JPG, PNG, GIF (Max 10MB)
+              </p>
+            </div>
+          </div>
+
           {/* Trait Type Dropdown */}
           <div className="mb-8">
             <label className="block text-futuristic-silver mb-2">Trait Upgrade Type</label>
@@ -56,6 +86,77 @@ const TraitUpgrade: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Upgrade Method Selection */}
+          <div className="mb-6">
+            <label className="block text-futuristic-silver mb-3">Upgrade Initiation Method</label>
+            <div className="flex space-x-4">
+              <div 
+                className={`flex-1 p-4 rounded-lg border cursor-pointer transition-all ${
+                  upgradeMethod === 'withoutNftIds' 
+                    ? 'border-futuristic-green bg-futuristic-green/10' 
+                    : 'border-futuristic-darkGray bg-futuristic-black'
+                }`}
+                onClick={() => setUpgradeMethod('withoutNftIds')}
+              >
+                <div className="flex items-center mb-2">
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-2 ${
+                    upgradeMethod === 'withoutNftIds' 
+                      ? 'border-futuristic-green' 
+                      : 'border-futuristic-darkGray'
+                  }`}>
+                    {upgradeMethod === 'withoutNftIds' && (
+                      <div className="w-2.5 h-2.5 rounded-full bg-futuristic-green"></div>
+                    )}
+                  </div>
+                  <span className="text-futuristic-silver font-medium">Without NFT IDs</span>
+                </div>
+                <p className="text-sm text-futuristic-silver/60 pl-7">
+                  Apply upgrade to all qualifying NFTs
+                </p>
+              </div>
+              
+              <div 
+                className={`flex-1 p-4 rounded-lg border cursor-pointer transition-all ${
+                  upgradeMethod === 'withNftIds' 
+                    ? 'border-futuristic-green bg-futuristic-green/10' 
+                    : 'border-futuristic-darkGray bg-futuristic-black'
+                }`}
+                onClick={() => setUpgradeMethod('withNftIds')}
+              >
+                <div className="flex items-center mb-2">
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-2 ${
+                    upgradeMethod === 'withNftIds' 
+                      ? 'border-futuristic-green' 
+                      : 'border-futuristic-darkGray'
+                  }`}>
+                    {upgradeMethod === 'withNftIds' && (
+                      <div className="w-2.5 h-2.5 rounded-full bg-futuristic-green"></div>
+                    )}
+                  </div>
+                  <span className="text-futuristic-silver font-medium">With NFT IDs</span>
+                </div>
+                <p className="text-sm text-futuristic-silver/60 pl-7">
+                  Apply upgrade to specific NFT IDs only
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* NFT IDs Input (conditional) */}
+          {upgradeMethod === 'withNftIds' && (
+            <div className="mb-8 animate-fade-in">
+              <label className="block text-futuristic-silver mb-2">NFT IDs</label>
+              <textarea
+                className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
+                placeholder="Enter NFT IDs separated by commas (e.g. 1234, 5678, 9012)"
+                rows={3}
+                value={nftIds}
+                onChange={(e) => setNftIds(e.target.value)}
+              />
+              <p className="text-xs text-futuristic-silver/60 mt-1">Optional: Leave blank to apply to all owned NFTs</p>
+            </div>
+          )}
 
           <div className="bg-futuristic-darkGray/40 rounded-xl p-6 mb-8">
             <h3 className="text-futuristic-silver mb-4">Upgrade Benefits</h3>
