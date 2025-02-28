@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { LayoutDashboard, LineChart, Settings } from 'lucide-react';
+import React from 'react';
+import { UploadCloud, Zap, Send } from 'lucide-react';
 
 interface SidebarProps {
   activeSection: string;
@@ -18,27 +18,27 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) =>
       
       <nav className="flex flex-col items-center w-full flex-1">
         <button 
-          className={`sidebar-button ${activeSection === 'dashboard' ? 'active' : ''}`}
-          onClick={() => setActiveSection('dashboard')}
-          aria-label="Dashboard"
+          className={`sidebar-button ${activeSection === 'nftTraitUpload' ? 'active' : ''}`}
+          onClick={() => setActiveSection('nftTraitUpload')}
+          aria-label="NFT Trait Upload"
         >
-          <LayoutDashboard className="w-6 h-6" />
+          <UploadCloud className="w-6 h-6" />
         </button>
         
         <button 
-          className={`sidebar-button ${activeSection === 'analytics' ? 'active' : ''}`}
-          onClick={() => setActiveSection('analytics')}
-          aria-label="Analytics"
+          className={`sidebar-button ${activeSection === 'traitUpgrade' ? 'active' : ''}`}
+          onClick={() => setActiveSection('traitUpgrade')}
+          aria-label="Trait Upgrade"
         >
-          <LineChart className="w-6 h-6" />
+          <Zap className="w-6 h-6" />
         </button>
         
         <button 
-          className={`sidebar-button ${activeSection === 'settings' ? 'active' : ''}`}
-          onClick={() => setActiveSection('settings')}
-          aria-label="Settings"
+          className={`sidebar-button ${activeSection === 'airdrop' ? 'active' : ''}`}
+          onClick={() => setActiveSection('airdrop')}
+          aria-label="Airdrop"
         >
-          <Settings className="w-6 h-6" />
+          <Send className="w-6 h-6" />
         </button>
       </nav>
       
