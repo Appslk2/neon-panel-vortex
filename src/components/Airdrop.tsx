@@ -73,7 +73,7 @@ const Airdrop: React.FC = () => {
       <h1 className="text-2xl font-bold text-gray-800 dark:text-futuristic-silver mb-4">NFTs Settings</h1>
       
       {/* NFT Mint Section */}
-      <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
+      <div className="bg-gray-100 dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
         <div className="bg-gray-50 text-gray-700 py-2 px-4 font-medium border-b border-gray-200">
           Robotic Rabbit Syndicate
         </div>
@@ -102,7 +102,7 @@ const Airdrop: React.FC = () => {
       </div>
 
       {/* Syndicate Airdrop Section */}
-      <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
+      <div className="bg-gray-100 dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
         <div className="bg-gray-50 text-gray-700 py-2 px-4 font-medium border-b border-gray-200">
           SYNDICATE AIRDROP
         </div>
@@ -170,7 +170,7 @@ const Airdrop: React.FC = () => {
       </div>
 
       {/* Syndicate NFT Reveal Section */}
-      <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
+      <div className="bg-gray-100 dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
         <div className="bg-gray-50 text-gray-700 py-2 px-4 font-medium border-b border-gray-200">
           SYNDICATE NFT REVEAL
         </div>
@@ -220,7 +220,7 @@ const Airdrop: React.FC = () => {
       </div>
 
       {/* Armors Airdrop Section */}
-      <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md overflow-hidden">
+      <div className="bg-gray-100 dark:bg-futuristic-darkGray shadow-md rounded-md overflow-hidden">
         <div className="bg-gray-50 text-gray-700 py-2 px-4 font-medium border-b border-gray-200">
           Armors Airdrop
         </div>
