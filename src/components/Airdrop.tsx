@@ -42,7 +42,7 @@ const Airdrop: React.FC = () => {
               className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-3 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
               placeholder="Enter recipient wallet address (0x...)"
               value={walletAddress}
-              {/*onChange={(e) => setWalletAddress(e.target.value)}*/}
+              onChange={(e) => setWalletAddress(e.target.value)}
             />
           </div>
 
@@ -73,14 +73,14 @@ const Airdrop: React.FC = () => {
             />
           </div>
 
-          {/* <div className="bg-futuristic-darkGray/40 rounded-xl p-4 mb-8 flex items-center">
+          <div className="bg-futuristic-darkGray/40 rounded-xl p-4 mb-8 flex items-center">
             <div className="w-10 h-10 rounded-full bg-futuristic-green/20 flex items-center justify-center mr-4">
               <div className="w-5 h-5 text-futuristic-green">ℹ️</div>
             </div>
             <p className="text-futuristic-silver/80 text-sm">
               Please verify all details before initiating the airdrop. This action cannot be undone.
             </p>
-          </div>*/}
+          </div>
 
           <div className="mt-8 flex justify-end">
             <button 
