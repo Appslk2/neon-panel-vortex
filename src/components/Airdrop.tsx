@@ -70,23 +70,23 @@ const Airdrop: React.FC = () => {
 
   return (
     <div className="section-fadeIn p-4 w-full">
-      <h1 className="text-2xl font-bold text-futuristic-silver mb-4">NFTs Settings</h1>
+      <h1 className="text-2xl font-bold text-gray-800 dark:text-futuristic-silver mb-4">NFTs Settings</h1>
       
       {/* NFT Mint Section */}
       <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
-        <div className="bg-futuristic-green text-white py-2 px-4 font-medium">
+        <div className="bg-white text-futuristic-green py-2 px-4 font-medium border-b border-gray-200">
           Robotic Rabbit Syndicate
         </div>
         <div className="p-4">
           <div className="mb-4">
-            <label htmlFor="nftQuantity" className="block text-futuristic-silver mb-2">
+            <label htmlFor="nftQuantity" className="block text-gray-700 dark:text-futuristic-silver mb-2">
               Number of NFTs
             </label>
             <input 
               id="nftQuantity"
               type="number"
               min="0"
-              className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-2 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
+              className="w-full bg-gray-50 dark:bg-futuristic-black border border-gray-300 dark:border-futuristic-darkGray rounded-md px-4 py-2 text-gray-700 dark:text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
               placeholder="0"
               value={nftQuantity}
               onChange={(e) => setNftQuantity(e.target.value)}
@@ -103,19 +103,19 @@ const Airdrop: React.FC = () => {
 
       {/* Syndicate Airdrop Section */}
       <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
-        <div className="bg-futuristic-green text-white py-2 px-4 font-medium">
+        <div className="bg-white text-futuristic-green py-2 px-4 font-medium border-b border-gray-200">
           SYNDICATE AIRDROP
         </div>
         <div className="p-4">
           <div className="mb-4">
-            <label htmlFor="walletAddress" className="block text-futuristic-silver mb-2">
+            <label htmlFor="walletAddress" className="block text-gray-700 dark:text-futuristic-silver mb-2">
               Wallet Address
             </label>
             <div className="flex">
               <input 
                 id="walletAddress"
                 type="text"
-                className="flex-grow bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-2 mr-2 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
+                className="flex-grow bg-gray-50 dark:bg-futuristic-black border border-gray-300 dark:border-futuristic-darkGray rounded-md px-4 py-2 mr-2 text-gray-700 dark:text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
                 placeholder="Please enter wallet address"
                 value={walletAddress}
                 onChange={(e) => setWalletAddress(e.target.value)}
@@ -147,6 +147,19 @@ const Airdrop: React.FC = () => {
             </button>
           </div>
           
+          {walletList.length > 0 && (
+            <div className="mb-4">
+              <div className="grid grid-cols-1 font-medium text-gray-700 dark:text-futuristic-silver mb-2 border-b border-gray-200 dark:border-futuristic-darkGray pb-2">
+                <div>Wallet Addresses</div>
+              </div>
+              {walletList.map((item, index) => (
+                <div key={index} className="grid grid-cols-1 text-gray-700 dark:text-futuristic-silver py-2 border-b border-gray-200 dark:border-futuristic-darkGray/30">
+                  <div className="truncate" title={item.walletAddress}>{item.walletAddress}</div>
+                </div>
+              ))}
+            </div>
+          )}
+          
           <button 
             onClick={handleAirdropWallets}
             className="px-4 py-2 bg-futuristic-green text-white rounded-md hover:bg-futuristic-darkGreen transition-colors"
@@ -158,19 +171,19 @@ const Airdrop: React.FC = () => {
 
       {/* Syndicate NFT Reveal Section */}
       <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md mb-6 overflow-hidden">
-        <div className="bg-futuristic-green text-white py-2 px-4 font-medium">
+        <div className="bg-white text-futuristic-green py-2 px-4 font-medium border-b border-gray-200">
           SYNDICATE NFT REVEAL
         </div>
         <div className="p-4">
           <div className="mb-4">
-            <label htmlFor="tokenId" className="block text-futuristic-silver mb-2">
+            <label htmlFor="tokenId" className="block text-gray-700 dark:text-futuristic-silver mb-2">
               Token ID
             </label>
             <div className="flex">
               <input 
                 id="tokenId"
                 type="text"
-                className="flex-grow bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-2 mr-2 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
+                className="flex-grow bg-gray-50 dark:bg-futuristic-black border border-gray-300 dark:border-futuristic-darkGray rounded-md px-4 py-2 mr-2 text-gray-700 dark:text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
                 placeholder="Enter token ID"
                 value={tokenId}
                 onChange={(e) => setTokenId(e.target.value)}
@@ -184,6 +197,19 @@ const Airdrop: React.FC = () => {
             </div>
           </div>
           
+          {tokenList.length > 0 && (
+            <div className="mb-4">
+              <div className="grid grid-cols-1 font-medium text-gray-700 dark:text-futuristic-silver mb-2 border-b border-gray-200 dark:border-futuristic-darkGray pb-2">
+                <div>Token IDs</div>
+              </div>
+              {tokenList.map((item, index) => (
+                <div key={index} className="grid grid-cols-1 text-gray-700 dark:text-futuristic-silver py-2 border-b border-gray-200 dark:border-futuristic-darkGray/30">
+                  <div className="truncate" title={item.tokenId}>{item.tokenId}</div>
+                </div>
+              ))}
+            </div>
+          )}
+          
           <button 
             onClick={handleReveal}
             className="px-4 py-2 bg-futuristic-green text-white rounded-md hover:bg-futuristic-darkGreen transition-colors"
@@ -195,18 +221,18 @@ const Airdrop: React.FC = () => {
 
       {/* Armors Airdrop Section */}
       <div className="bg-white dark:bg-futuristic-darkGray shadow-md rounded-md overflow-hidden">
-        <div className="bg-futuristic-green text-white py-2 px-4 font-medium">
+        <div className="bg-white text-futuristic-green py-2 px-4 font-medium border-b border-gray-200">
           Armors Airdrop
         </div>
         <div className="p-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div>
-              <label htmlFor="armorTokenId" className="block text-futuristic-silver mb-2">
+              <label htmlFor="armorTokenId" className="block text-gray-700 dark:text-futuristic-silver mb-2">
                 Armor Token ID
               </label>
               <select
                 id="armorTokenId"
-                className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-2 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
+                className="w-full bg-gray-50 dark:bg-futuristic-black border border-gray-300 dark:border-futuristic-darkGray rounded-md px-4 py-2 text-gray-700 dark:text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
                 value={selectedArmor}
                 onChange={(e) => setSelectedArmor(e.target.value)}
               >
@@ -218,13 +244,13 @@ const Airdrop: React.FC = () => {
             </div>
             
             <div>
-              <label htmlFor="armorWalletAddress" className="block text-futuristic-silver mb-2">
+              <label htmlFor="armorWalletAddress" className="block text-gray-700 dark:text-futuristic-silver mb-2">
                 Wallet Address
               </label>
               <input 
                 id="armorWalletAddress"
                 type="text"
-                className="w-full bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-2 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
+                className="w-full bg-gray-50 dark:bg-futuristic-black border border-gray-300 dark:border-futuristic-darkGray rounded-md px-4 py-2 text-gray-700 dark:text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
                 placeholder="Enter wallet address"
                 value={armorWalletAddress}
                 onChange={(e) => setArmorWalletAddress(e.target.value)}
@@ -232,7 +258,7 @@ const Airdrop: React.FC = () => {
             </div>
             
             <div>
-              <label htmlFor="armorQuantity" className="block text-futuristic-silver mb-2">
+              <label htmlFor="armorQuantity" className="block text-gray-700 dark:text-futuristic-silver mb-2">
                 Quantity
               </label>
               <div className="flex">
@@ -240,7 +266,7 @@ const Airdrop: React.FC = () => {
                   id="armorQuantity"
                   type="number"
                   min="1"
-                  className="flex-grow bg-futuristic-black border border-futuristic-darkGray rounded-md px-4 py-2 mr-2 text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
+                  className="flex-grow bg-gray-50 dark:bg-futuristic-black border border-gray-300 dark:border-futuristic-darkGray rounded-md px-4 py-2 mr-2 text-gray-700 dark:text-futuristic-silver focus:outline-none focus:border-futuristic-green transition-colors"
                   placeholder="1"
                   value={armorQuantity}
                   onChange={(e) => setArmorQuantity(e.target.value)}
@@ -257,13 +283,13 @@ const Airdrop: React.FC = () => {
           
           {armorList.length > 0 && (
             <div className="mb-4">
-              <div className="grid grid-cols-3 font-medium text-futuristic-silver mb-2 border-b border-futuristic-darkGray pb-2">
+              <div className="grid grid-cols-3 font-medium text-gray-700 dark:text-futuristic-silver mb-2 border-b border-gray-200 dark:border-futuristic-darkGray pb-2">
                 <div>Wallet Address</div>
                 <div>Token ID</div>
                 <div>Quantity</div>
               </div>
               {armorList.map((item, index) => (
-                <div key={index} className="grid grid-cols-3 text-futuristic-silver py-2 border-b border-futuristic-darkGray/30">
+                <div key={index} className="grid grid-cols-3 text-gray-700 dark:text-futuristic-silver py-2 border-b border-gray-200 dark:border-futuristic-darkGray/30">
                   <div className="truncate" title={item.walletAddress}>{item.walletAddress}</div>
                   <div className="truncate" title={item.tokenId}>{item.tokenId}</div>
                   <div>{item.quantity}</div>
