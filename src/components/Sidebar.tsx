@@ -2,6 +2,7 @@
 import React from 'react';
 import { UploadCloud, Zap, Send, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../utils/theme-context';
+import { useIsMobile } from '../hooks/use-mobile';
 
 interface SidebarProps {
   activeSection: string;
@@ -10,9 +11,10 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) => {
   const { theme, toggleTheme } = useTheme();
+  const isMobile = useIsMobile();
   
   return (
-    <div className={`h-screen w-20 bg-futuristic-black border-r border-futuristic-darkGray flex flex-col items-center py-8 ${theme === 'light' ? 'light-sidebar' : ''}`}>
+    <div className={`h-screen w-auto ${isMobile ? 'w-20' : 'w-64'} bg-futuristic-black border-r border-futuristic-darkGray flex flex-col items-center py-8 ${theme === 'light' ? 'light-sidebar' : ''}`}>
       <div className="mb-12 w-12 h-12 rounded-full bg-futuristic-green flex items-center justify-center futuristic-glow">
         <div className="w-8 h-8 rounded-full bg-futuristic-black flex items-center justify-center">
           <div className="w-6 h-6 rounded-full bg-futuristic-green/40"></div>
@@ -21,27 +23,30 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) =>
       
       <nav className="flex flex-col items-center w-full flex-1">
         <button 
-          className={`sidebar-button ${activeSection === 'nftTraitUpload' ? 'active' : ''}`}
+          className={`sidebar-button ${activeSection === 'nftTraitUpload' ? 'active' : ''} ${!isMobile ? 'flex-row justify-start px-6 w-56' : ''}`}
           onClick={() => setActiveSection('nftTraitUpload')}
           aria-label="NFT Trait Upload"
         >
           <UploadCloud className="w-6 h-6" />
+          {!isMobile && <span className="ml-3 text-sm font-medium">Trait Type</span>}
         </button>
         
         <button 
-          className={`sidebar-button ${activeSection === 'traitUpgrade' ? 'active' : ''}`}
+          className={`sidebar-button ${activeSection === 'traitUpgrade' ? 'active' : ''} ${!isMobile ? 'flex-row justify-start px-6 w-56' : ''}`}
           onClick={() => setActiveSection('traitUpgrade')}
           aria-label="Trait Upgrade"
         >
           <Zap className="w-6 h-6" />
+          {!isMobile && <span className="ml-3 text-sm font-medium">Trait Upgrade</span>}
         </button>
         
         <button 
-          className={`sidebar-button ${activeSection === 'airdrop' ? 'active' : ''}`}
+          className={`sidebar-button ${activeSection === 'airdrop' ? 'active' : ''} ${!isMobile ? 'flex-row justify-start px-6 w-56' : ''}`}
           onClick={() => setActiveSection('airdrop')}
           aria-label="Airdrop"
         >
           <Send className="w-6 h-6" />
+          {!isMobile && <span className="ml-3 text-sm font-medium">Airdrop</span>}
         </button>
       </nav>
       
